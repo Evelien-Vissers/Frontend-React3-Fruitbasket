@@ -1,5 +1,7 @@
 import './App.css'
-import React, {useSate, useState} from 'react'
+
+//Opdracht 1: State - ga aan de slag met het samenstellen van de fruitmand
+import {useState} from 'react'
 
 function App() {
     //useState hooks voor elk type fruit
@@ -29,9 +31,30 @@ function App() {
             <button onClick={() => increase(setBananas, bananas)}>+</button>
             <button onClick={() => decrease(setBananas, bananas)}>-</button>
             </div>
+
+            <div>
+                <h3>Aardbeien: {strawberries}</h3>
+                <button onClick={() => increase(setStrawberries, strawberries)}>+</button>
+                <button onClick={() => decrease(setStrawberries, strawberries)}>-</button>
+            </div>
+
+            <div>
+                <h3>Appels: {apples}</h3>
+                <button onClick={() => increase(setApples, apples)}>+</button>
+                <button onClick={() => decrease(setApples, apples)}>-</button>
+            </div>
+
+            <div>
+                <h3>Kiwi&apos s: {kiwis}</h3>
+                <button onClick={() => increase(setKiwis, kiwis)}>+</button>
+                <button onClick={() => decrease(setKiwis, kiwis)}>-</button>
+            </div>
+
+            <div>
+                <button onClick={reset}>Reset alles</button>
+            </div>
         </div>
     </>
   )
 }
-
 export default App
