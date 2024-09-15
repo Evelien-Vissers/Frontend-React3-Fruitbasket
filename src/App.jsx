@@ -24,34 +24,34 @@ function App() {
 
     return (
     <>
-        <div>
+        <div className="fruit-container">
         <h1>Fruitmand bezorgservice</h1>
-            <div>
-            <h3>Bananen: {bananas}</h3>
+            <div className="fruit-box">
+            <h3>🍌 Bananen: {bananas}</h3>
             <button onClick={() => increase(setBananas, bananas)}>+</button>
             <button onClick={() => decrease(setBananas, bananas)}>-</button>
             </div>
 
-            <div>
-                <h3>Aardbeien: {strawberries}</h3>
+            <div className="fruit-box">
+                <h3>🍓 Aardbeien: {strawberries}</h3>
                 <button onClick={() => increase(setStrawberries, strawberries)}>+</button>
                 <button onClick={() => decrease(setStrawberries, strawberries)}>-</button>
             </div>
 
-            <div>
-                <h3>Appels: {apples}</h3>
+            <div className="fruit-box">
+                <h3>🍏 Appels: {apples}</h3>
                 <button onClick={() => increase(setApples, apples)}>+</button>
                 <button onClick={() => decrease(setApples, apples)}>-</button>
             </div>
 
-            <div>
-                <h3>Kiwi&apos s: {kiwis}</h3>
+            <div className="fruit-box">
+                <h3>🥝 Kiwi&apos;s: {kiwis}</h3>
                 <button onClick={() => increase(setKiwis, kiwis)}>+</button>
                 <button onClick={() => decrease(setKiwis, kiwis)}>-</button>
             </div>
 
             <div>
-                <button onClick={reset}>Reset alles</button>
+                <button className="reset-button" onClick={reset}>Reset alles</button>
             </div>
         </div>
     </>
