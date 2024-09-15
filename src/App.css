@@ -1,58 +1,130 @@
-/*Global style*/
+/* Algemene stijlen voor de pagina */
 body {
-    font-family: Alicia, sans-serif;
+    font-family: 'Roboto', sans-serif; /* Vrolijk en leesbaar lettertype */
+    background-color: #f9f9f9; /* Lichte achtergrondkleur */
+    margin: 0;
+    padding: 0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: lightgreen;
 }
-/*Stijl voor container van de fruitsoorten */
-.fruit-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+
+/* Stijlen voor de form */
+.order-form {
+    background-color: #ffffff; /* Witte achtergrond voor de form */
+    border-radius: 8px; /* Ronde hoeken */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Schaduw rond de form */
+    padding: 20px;
+    width: 100%;
+    max-width: 800px; /* Max breedte voor de form */
+}
+
+/* Stijlen voor secties */
+.section {
     margin-bottom: 20px;
 }
 
-/*Stijl voor elke box */
-.fruit-box {
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    width: 300px;
-    text-align: center;
-    background-color: burlywood;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Specifieke stijlen voor de fruit-sectie */
+.fruit-section {
+    border-bottom: 2px solid #a4d7a4; /* Randkleur onder de fruit-sectie */
+    padding-bottom: 20px;
 }
-h3 {
-    font-size: 1em;
+
+/* Specifieke stijlen voor de order-form sectie */
+.order-form-section {
+    border-top: 2px solid #a4d7a4; /* Randkleur boven de order-form sectie */
+    padding-top: 20px;
+}
+
+/* Stijlen voor fruit-container en fruit-box */
+.fruit-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    gap: 20px; /* Ruimte tussen de fruit-boxen */
+}
+.counter {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Stijlen voor de buttons */
+button {
+    background-color: #a4d7a4; /* Knopkleur */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #8bcf8b; /* Donkerdere knopkleur bij hover */
+}
+
+/* Specifieke stijlen voor reset en submit buttons */
+.reset-button {
+    background-color: #f4a4a4; /* Resetknop kleur */
+}
+
+.submit-button {
+    background-color: #4caf50; /* Verzenden knop kleur */
+}
+
+/* Stijlen voor label en input */
+label {
+    display: block;
     margin-bottom: 10px;
 }
-button {
-    padding: 10px 15px;
-    margin: 0 15px;
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: vertical; /* Alleen verticaal kunnen vergroten */
+    height: 100px;
+}
+
+/* Stijlen voor select en fieldset */
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+fieldset {
     border: none;
-    background-color: lightgray;
-    font-size: 1em;
-    border-radius: 5px;
-    cursor: pointer;
+    margin: 0;
+    padding: 0;
 }
-button:hover {
-    background-color: dimgrey;
+
+/* Stijlen voor radiobuttons en checkboxes */
+input[type="radio"] {
+    margin-right: 5px;
 }
-.reset-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    cursor: pointer;
+
+input[type="checkbox"] {
+    margin-right: 10px;
 }
-.reset-button:hover {
-    background-color: dimgrey;
+
+/* Stijlen voor checkbox-label */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
 }
+

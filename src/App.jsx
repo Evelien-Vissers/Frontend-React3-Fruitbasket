@@ -16,7 +16,7 @@ function App() {
 
     //Functies om de hoeveelheid aan te passen
     const increase = (setter, current) => setter(current + 1);
-    const decrease = (setter, current) => setter(Math.max(0, current -1));
+    const decrease = (setter, current) => setter(Math.max(0, current - 1));
 
     //Functie om alles te resetten
     const reset = () => {
@@ -39,102 +39,118 @@ function App() {
     //Functie voor het versturen van het formulier
     const handleSubmit = (e) => {
         e.preventDefault(); //Voorkomt het herladen van de pagina
-        console.log({firstName, lastName, age, postcode, deliveryFrequency});
-        console.log({ bananas, strawberries, apples, kiwis });
-    }
-
+        console.log({
+            firstName,
+            lastName,
+            age,
+            postcode,
+            deliveryFrequency,
+            timeSlot,
+            comment,
+            termsAccepted,
+            bananas,
+            strawberries,
+            apples,
+            kiwis
+        });
+    };
     return (
-        <form onSubmit={handleSubmit} className="order-form">
-        <h1>Fruitmand bezorgservice</h1>
+        <div className="fruit-container">
+            <form onSubmit={handleSubmit} className="order-form">
+                <div className="section fruit-section">
+                    <h1>Fruitmand bezorgservice</h1>
+                    <Counter
+                        label="🍌 Bananen"
+                        value={bananas}
+                        onIncrease={() => setBananas(bananas + 1)}
+                        onDecrease={() => setBananas(Math.max(0, bananas - 1))}
+                    />
+                    <Counter
+                        label="🍓 Aardbeien"
+                        value={strawberries}
+                        onIncrease={() => setStrawberries(strawberries + 1)}
+                        onDecrease={() => setStrawberries(Math.max(0, strawberries - 1))}
+                    />
+                    <Counter
+                        label="🍏 Appels"
+                        value={apples}
+                        onIncrease={() => setApples(apples + 1)}
+                        onDecrease={() => setApples(Math.max(0, apples - 1))}
+                    />
+                    <Counter
+                        label="🥝 Kiwi&apos;s"
+                        value={kiwis}
+                        onIncrease={() => setKiwis(kiwis + 1)}
+                        onDecrease={() => setKiwis(Math.max(0, kiwis + 1))}
+                    />
+                    <Button text="Reset alles" onClick={reset}>Reset alles</Button>
+                </div>
 
-            <Counter
-                label="🍌 Bananen"
-                value={bananas}
-                onIncrease={() => setBananas(bananas +1)}
-                onDecrease={() => setBananas(Math.max(0, bananas - 1))}
-            />
 
-            <Counter
-                label="🍓 Aardbeien"
-                value={strawberries}
-                onIncrease={() => setStrawberries(strawberries + 1)}
-                onDecrease={() => setStrawberries(Math.max(0, strawberries - 1))}
-            />
+                <div className="section order-form-section">
+                    <TextInput
+                        label="Voornaam:"
+                        value={firstName}
+                        onChange={setFirstName}
+                    />
+                    <TextInput
+                        label="Achternaam:"
+                        value={lastName}
+                        onChange={setLastName}
+                    />
+                    <TextInput
+                        label="Leeftijd:"
+                        value={age}
+                        onChange={setAge}
+                        type="number"
+                    />
+                    <TextInput
+                        label="Postcode:"
+                        value={postcode}
+                        onChange={setPostcode}
+                    />
 
-            <Counter
-                label="🍏 Appels"
-                value ={apples}
-                onIncrease={() => setApples(apples + 1)}
-                onDecrease={() => setApples(Math.max(0, apples - 1))}
-            />
-            <Counter
-                label="🥝 Kiwi&apos;s"
-                value={kiwis}
-                onIncrease={() => setKiwis(kiwis + 1)}
-                onDecrease={() => setKiwis(Math.max(0, kiwis + 1))}
-            />
-            <Button text="Reset alles" onClick={reset} />
+                    <label>
+                        Bezorgfrequentie:
+                        <select
+                            value={deliveryFrequency}
+                            onChange={(e) => setDeliveryFrequency(e.target.value)}
+                        >
+                            <option value="iedere week">Iedere week</option>
+                            <option value="om de week">Om de week</option>
+                            <option value="iedere maand">Iedere maand</option>
+                        </select>
+                    </label>
 
-            <TextInput
-                label="Voornaam:"
-                value={firstName}
-                onChange={setFirstName}
-            />
-            <TextInput
-                label="Achternaam:"
-                value={lastName}
-                onChange={setLastName}
-            />
-            <TextInput
-                label="Leeftijd:"
-                value={age}
-                onChange={setAge}
-                type="number"
-            />
-            <TextInput
-                label="Postcode:"
-                value={postcode}
-                onChange={setPostcode}
-            />
+                    <RadioGroup
+                        label="Tijdvak:"
+                        options={[
+                            {value: 'overdag', label: 'Overdag'},
+                            {value: 's avonds', label: 's Avonds'}
+                        ]}
+                        selectedValue={timeSlot}
+                        onChange={setTimeSlot}
+                    />
 
-            <label>
-                Bezorgfrequentie:
-                <select
-                    value={deliveryFrequency}
-                    onChange={(e) => setDeliveryFrequency(e.target.value)}
-                    >
-                    <option value="iedere week">Iedere week</option>
-                    <option value="om de week">Om de week</option>
-                    <option value="iedere maand">Iedere maand</option>
-                </select>
-            </label>
+                    <label>
+                        Opmerking:
+                        <textarea
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                        />
+                    </label>
 
-            <RadioGroup
-                label="Tijdvak:"
-                options={[
-                    {value: 'overdag', label: 'Overdag'},
-                    {value: 's avonds', label: 's Avonds'}
-                ]}
-                selectedValue={timeSlot}
-                onChange={setTimeSlot}
-            />
+                    <Checkbox
+                        label="Ik ga akkoord met de voorwaarden"
+                        checked={termsAccepted}
+                        onChange={setTermsAccepted}
+                    />
 
-            <label>
-                Opmerking:
-                <textarea
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                />
-            </label>
-
-            <Checkbox
-                label="Ik ga akkoord met de voorwaarden"
-                checked={termsAccepted}
-                onChange={setTermsAccepted}
-            />
-
-            <Button text="Verzend" type="submit" />
+                    <Button text="Verzend" type="submit"/>
+                </div>
             </form>
-  )
+        </div>
+    )
 }
+
 export default App
