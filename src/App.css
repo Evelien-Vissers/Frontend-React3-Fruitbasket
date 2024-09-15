@@ -35,8 +35,7 @@ button {
     padding: 10px 15px;
     margin: 0 15px;
     border: none;
-    background-color: black;
-    color: white;
+    background-color: lightgray;
     font-size: 1em;
     border-radius: 5px;
     cursor: pointer;
@@ -55,5 +54,5 @@ button:hover {
     cursor: pointer;
 }
 .reset-button:hover {
-    background-color: magenta;
+    background-color: dimgrey;
 }
