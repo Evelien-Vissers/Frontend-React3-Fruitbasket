@@ -1,24 +1,18 @@
 import './App.css'
-
-//Opdracht 1: State - ga aan de slag met het samenstellen van de fruitmand
+import Button from './components/ButtonComponent.jsx'
 import {useState} from 'react'
+import Counter from "./components/CounterComponent.jsx";
+import TextInput from "./components/TextInputComponent.jsx";
+import RadioGroup from "./components/RadioGroupComponent.jsx";
+import Checkbox from "./components/CheckboxComponent.jsx";
 
 function App() {
+
     //useState hooks voor elk type fruit
     const [bananas, setBananas] = useState(0);
     const [strawberries, setStrawberries] = useState(0);
     const [apples, setApples] = useState(0);
     const [kiwis, setKiwis] = useState(0);
-
-    //Opdracht 2: Formulier bouwen
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [age, setAge] = useState('');
-    const [postcode, setPostcode] = useState('');
-    const [deliveryFrequency, setDeliveryFrequency] = useState('iedere week');
-    const [timeSlot, setTimeSlot] = useState('overdag');
-    const [comment, setComment] = useState('');
-    const [termsAccepted, setTermsAccepted] = useState(false);
 
     //Functies om de hoeveelheid aan te passen
     const increase = (setter, current) => setter(current + 1);
@@ -32,80 +26,76 @@ function App() {
         setKiwis(0);
     };
 
+    //Opdracht 2: Formulier bouwen
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [age, setAge] = useState('');
+    const [postcode, setPostcode] = useState('');
+    const [deliveryFrequency, setDeliveryFrequency] = useState('iedere week');
+    const [timeSlot, setTimeSlot] = useState('overdag');
+    const [comment, setComment] = useState('');
+    const [termsAccepted, setTermsAccepted] = useState(false);
+
     //Functie voor het versturen van het formulier
     const handleSubmit = (e) => {
         e.preventDefault(); //Voorkomt het herladen van de pagina
-        //
+        console.log({firstName, lastName, age, postcode, deliveryFrequency});
+        console.log({ bananas, strawberries, apples, kiwis });
     }
 
     return (
         <form onSubmit={handleSubmit} className="order-form">
-    <>
-        <div className="fruit-container">
         <h1>Fruitmand bezorgservice</h1>
-            <div className="fruit-box">
-            <h3>🍌 Bananen: {bananas}</h3>
-            <button onClick={() => increase(setBananas, bananas)}>+</button>
-            <button onClick={() => decrease(setBananas, bananas)}>-</button>
-            </div>
 
-            <div className="fruit-box">
-                <h3>🍓 Aardbeien: {strawberries}</h3>
-                <button onClick={() => increase(setStrawberries, strawberries)}>+</button>
-                <button onClick={() => decrease(setStrawberries, strawberries)}>-</button>
-            </div>
+            <Counter
+                label="🍌 Bananen"
+                value={bananas}
+                onIncrease={() => setBananas(bananas +1)}
+                onDecrease={() => setBananas(Math.max(0, bananas - 1))}
+            />
 
-            <div className="fruit-box">
-                <h3>🍏 Appels: {apples}</h3>
-                <button onClick={() => increase(setApples, apples)}>+</button>
-                <button onClick={() => decrease(setApples, apples)}>-</button>
-            </div>
+            <Counter
+                label="🍓 Aardbeien"
+                value={strawberries}
+                onIncrease={() => setStrawberries(strawberries + 1)}
+                onDecrease={() => setStrawberries(Math.max(0, strawberries - 1))}
+            />
 
-            <div className="fruit-box">
-                <h3>🥝 Kiwi&apos;s: {kiwis}</h3>
-                <button onClick={() => increase(setKiwis, kiwis)}>+</button>
-                <button onClick={() => decrease(setKiwis, kiwis)}>-</button>
-            </div>
+            <Counter
+                label="🍏 Appels"
+                value ={apples}
+                onIncrease={() => setApples(apples + 1)}
+                onDecrease={() => setApples(Math.max(0, apples - 1))}
+            />
+            <Counter
+                label="🥝 Kiwi&apos;s"
+                value={kiwis}
+                onIncrease={() => setKiwis(kiwis + 1)}
+                onDecrease={() => setKiwis(Math.max(0, kiwis + 1))}
+            />
+            <Button text="Reset alles" onClick={reset} />
 
-            <div>
-                <button className="reset-button" onClick={reset}>Reset alles</button>
-            </div>
-
-            <label>
-                Voornaam:
-                <input
-                    type="text"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    />
-            </label>
-
-            <label>
-                Achternaam:
-                <input
-                    type="text"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    />
-            </label>
-
-            <label>
-                Leeftijd:
-                <input
-                    type="number"
-                    value={age}
-                    onChange={(e) => setAge(e.target.value)}
-                    />
-            </label>
-
-            <label>
-                Postcode:
-                <input
-                    type="text"
-                    value={postcode}
-                    onChange={(e) => setPostcode(e.target.value)}
-                    />
-            </label>
+            <TextInput
+                label="Voornaam:"
+                value={firstName}
+                onChange={setFirstName}
+            />
+            <TextInput
+                label="Achternaam:"
+                value={lastName}
+                onChange={setLastName}
+            />
+            <TextInput
+                label="Leeftijd:"
+                value={age}
+                onChange={setAge}
+                type="number"
+            />
+            <TextInput
+                label="Postcode:"
+                value={postcode}
+                onChange={setPostcode}
+            />
 
             <label>
                 Bezorgfrequentie:
@@ -119,50 +109,32 @@ function App() {
                 </select>
             </label>
 
-            <fieldset>
-                <legend>Tijdvak:</legend>
-                <label>
-                    <input
-                        type="radio"
-                        value="overdag"
-                        checked={timeSlot === 'overdag'}
-                        onChange={(e) => setTimeSlot(e.target.value)}
-                        />
-                    Overdag
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        value=" 's avonds"
-                        checked={timeSlot === 's avonds'}
-                        onChange={(e) => setTimeSlot(e.target.value)}
-                    />
-                    &apos;s Avonds
-                </label>
-            </fieldset>
+            <RadioGroup
+                label="Tijdvak:"
+                options={[
+                    {value: 'overdag', label: 'Overdag'},
+                    {value: 's avonds', label: 's Avonds'}
+                ]}
+                selectedValue={timeSlot}
+                onChange={setTimeSlot}
+            />
 
             <label>
                 Opmerking:
                 <textarea
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
-            />
-            </label>
-
-            <label>
-                <input
-                    type="checkbox"
-                    checked={termsAccepted}
-                    onChange={(e) => setTermsAccepted(e.target.value)}
-                    defaultChecked={false}
                 />
-                Ik ga akkoord met de voorwaarden
             </label>
 
-            <button type="submit">Verzend</button>
-        </div>
-    </>
-    </form>
+            <Checkbox
+                label="Ik ga akkoord met de voorwaarden"
+                checked={termsAccepted}
+                onChange={setTermsAccepted}
+            />
+
+            <Button text="Verzend" type="submit" />
+            </form>
   )
 }
 export default App
